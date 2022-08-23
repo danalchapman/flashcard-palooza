@@ -8,7 +8,7 @@ describe.only('Turn', function() {
     let card, turn;
 
     beforeEach(function () {
-        card = new Card(1, 'What is my favorite animal', ['Penguin', 'Wolf', 'Fox', 'Dog'], 'Fox');
+        card = new Card(1, 'What is Dana\'s favorite animal', ['Penguin', 'Wolf', 'Fox', 'Dog'], 'Fox');
         turn = new Turn('Fox', card);
     });
 
@@ -25,5 +25,11 @@ describe.only('Turn', function() {
         expect(turn.card).to.equal(card);
     });
 
-    
+    it('should return user\'s guess', function() {
+        expect(turn.returnGuess()).to.equal('Fox');
+    });
+
+    it('should return the card', function() {
+        expect(turn.returnCard()).to.equal(card);
+    });
 })
