@@ -7,7 +7,7 @@ const Deck = require('../src/Deck');
 const Round = require('../src/Round');
 
 describe.only('Round', function() {
-    let card, deck, round, turn;
+    let card, card1, deck, deck1, round, turn, turn1;
 
     beforeEach(function () {
         card = new Card(1, 'What is Dana\'s favorite animal', ['Penguin', 'Wolf', 'Fox', 'Dog'], 'Fox');
@@ -16,6 +16,7 @@ describe.only('Round', function() {
         deck1 = new Deck([card, card1]);
         round = new Round(deck);
         turn = new Turn('Fox', card);
+        turn1 = new Turn('Wolf', card);
     })
 
     it('should be a function', function() {
@@ -47,6 +48,11 @@ describe.only('Round', function() {
             expect(round.currentCard.id).to.equal(1);
             round.takeTurn('Fox');
             expect(round.currentCard.id).to.equal(2);
+        });
+
+        it('should evaluate the current guess', function() {
+            expect(turn.evaluateGuess()).to.equal(true);
+            expect(turn1.evaluateGuess()).to.equal(false);
         });
     })
 })
