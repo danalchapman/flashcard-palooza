@@ -54,5 +54,10 @@ describe.only('Round', function() {
             expect(turn.evaluateGuess()).to.equal(true);
             expect(turn1.evaluateGuess()).to.equal(false);
         });
+
+        it('should store card id in incorrect guesses array', function() {
+            round.takeTurn('Wolf');
+            expect(round.incorrectGuesses).to.include(card.id)
+        });
     })
 })
