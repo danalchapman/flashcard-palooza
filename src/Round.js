@@ -9,5 +9,24 @@
 // calculatePercentCorrect: method that calculates and returns the percentage of correct guesses
 // endRound: method that prints "Round over! You answered <>% of the questions correctly!"
 
+const Turn = require("./Turn");
 
-// module.exports = Round;
+class Round {
+    constructor(deck) {
+        this.deck = deck;
+        this.currentCard = deck.currentDeck[0];
+        this.turns = 0;
+    }
+
+    returnCurrentCard() {
+        return this.currentCard;
+    }
+
+    takeTurn(guess) {
+        const turn = new Turn(guess, this.currentCard);
+        this.turns++;
+        this.currentCard = this.deck.currentDeck[this.turns];
+    }
+}
+
+module.exports = Round;
