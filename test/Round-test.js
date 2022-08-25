@@ -12,8 +12,8 @@ describe.only('Round', function() {
     beforeEach(function () {
         card = new Card(1, 'What is Dana\'s favorite animal', ['Penguin', 'Wolf', 'Fox', 'Dog'], 'Fox');
         card1 = new Card(2, 'What TTRPG does Dana play the most', ['D&D', 'Pathfinder', 'Thirsty Sword Lesbians', "Vampire: the Masquerade"], 'D&D');
-        deck = new Deck([card]);
-        deck1 = new Deck([card, card1]);
+        card2 = new Card(3, 'What is Dana\s favorite color', ['red', 'black', 'purple', 'grey'], 'red');
+        deck = new Deck([card, card1, card2]);
         round = new Round(deck);
         turn = new Turn('Fox', card);
         turn1 = new Turn('Wolf', card);
@@ -31,7 +31,7 @@ describe.only('Round', function() {
         expect(round.currentCard).to.deep.equal(card);
     });
 
-    describe('Round.takeTurn', function() {
+    describe('takeTurn', function() {
 
         it('should instantiate an instance of Turn', function() {
             expect(turn).to.be.an.instanceOf(Turn);
@@ -44,7 +44,6 @@ describe.only('Round', function() {
         });
 
         it('should update the next card to be current card', function() {
-            const round = new Round(deck1);
             expect(round.currentCard.id).to.equal(1);
             round.takeTurn('Fox');
             expect(round.currentCard.id).to.equal(2);
@@ -59,5 +58,31 @@ describe.only('Round', function() {
             round.takeTurn('Wolf');
             expect(round.incorrectGuesses).to.include(card.id)
         });
-    })
-})
+
+        it('should return feedback after guess', function() {
+            const round = new Round(deck);
+            expect(round.takeTurn('Fox')).to.equal('Correct!');
+            expect(round.takeTurn('Wolf')).to.equal('Incorrect!');
+        });
+
+        describe('calculatePercentCorrect', function() {
+
+            it('should return the percentage of correct guesses', function() {
+                round.takeTurn('Wolf');
+                round.takeTurn('D&D');
+                round.takeTurn('red');
+                expect(round.calculatePercentCorrect()).to.equal(66);
+            });
+
+            describe('endRound', function() {
+
+                it('should print a message with the correct guess percentage', function() {
+                    round.takeTurn('Wolf');
+                    round.takeTurn('D&D');
+                    round.takeTurn('red');
+                    expect(round.endRound()).to.equal('Round over! You answered 66% of the questions correctly!');
+                });
+            });
+        });
+    });
+});
