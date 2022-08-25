@@ -7,7 +7,7 @@ const Deck = require('../src/Deck');
 const Round = require('../src/Round');
 
 describe.only('Round', function() {
-    let card, card1, deck, deck1, round, turn, turn1;
+    let card, card1, deck, round, turn, turn1;
 
     beforeEach(function () {
         card = new Card(1, 'What is Dana\'s favorite animal', ['Penguin', 'Wolf', 'Fox', 'Dog'], 'Fox');
