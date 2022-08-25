@@ -6,7 +6,7 @@ const Turn = require('../src/Turn');
 const Deck = require('../src/Deck');
 const Round = require('../src/Round');
 
-describe.only('Round', function() {
+describe('Round', function() {
     let card, card1, deck, round, turn, turn1;
 
     beforeEach(function () {
@@ -17,7 +17,7 @@ describe.only('Round', function() {
         round = new Round(deck);
         turn = new Turn('Fox', card);
         turn1 = new Turn('Wolf', card);
-    })
+    });
 
     it('should be a function', function() {
         expect(Round).to.be.a('function');
