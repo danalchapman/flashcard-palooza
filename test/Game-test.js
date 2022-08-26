@@ -2,18 +2,16 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Card = require('../src/Card');
-const Turn = require('../src/Turn');
 const Deck = require('../src/Deck');
 const Round = require('../src/Round');
 const Game = require('../src/Game');
 
 describe.only('Game', function() {
-    let card, deck, turn, round;
+    let card, deck, round, game;
 
     beforeEach(function () {
         card = new Card(1, 'What is Dana\'s favorite animal', ['Penguin', 'Wolf', 'Fox', 'Dog'], 'Fox');
         deck = new Deck([card]);
-        turn = new Turn('Fox', card);
         round = new Round(deck);
         game = new Game(round);
     });
@@ -27,33 +25,27 @@ describe.only('Game', function() {
     });
 
     it('should keep track of the current round', function() {
-        expect(game.currentRound).to.equal(round.turns);
+        expect(game.currentRound).to.deep.equal(round);
     });
 
     describe('start', function() {
 
-        it('should be a function', function() {
-            expect(game.start).to.be.a('function');
+        it('should create cards', function() { // should create cards
+            game.start();
+            expect(game.currentRound.currentCard.id).to.equal(1);
+            expect(game.currentRound.currentCard.question).to.equal('What allows you to define a set of related information using key-value pairs?');
+            expect(game.currentRound.currentCard.answers).to.deep.equal(["object", "array", "function"]);
+            expect(game.currentRound.currentCard.correctAnswer).to.equal('object');
         });
 
-        it.skip('should create cards', function() { // should create cards
-            
+        it('should add cards to the deck', function() { // should add cards to a deck
+            game.start();
+            expect(game.currentRound.deck.length).to.equal(30);
         });
 
-        it.skip('should add cards to the deck', function() { // should add cards to a deck
-
+        it('should create a new round using deck', function() { // should create a new round with the deck
+            game.start();
+            expect(game.currentRound).is.an.instanceOf(Round);
         });
-
-        it.skip('should create a new round', function() { // should create a new round with the deck
-
-        });
-
-        it.skip('should print a welcome message that includes the deck count', function() { // should invoke printMessage
-
-        });
-
-        it.skip('should print the first question from the deck', function() { // should invoke printQuestion
-
-        })
     })
 })
