@@ -80,7 +80,7 @@ describe('Round', function() {
                     round.takeTurn('Wolf');
                     round.takeTurn('D&D');
                     round.takeTurn('red');
-                    expect(round.endRound()).to.equal('Round over! You answered 66% of the questions correctly!');
+                    expect(round.endRound()).to.equal('**Round over!** You answered 66% of the questions correctly!');
                 });
             });
         });

@@ -6,7 +6,7 @@ const Deck = require('../src/Deck');
 const Round = require('../src/Round');
 const Game = require('../src/Game');
 
-describe.only('Game', function() {
+describe('Game', function() {
     let card, deck, round, game;
 
     beforeEach(function () {
@@ -40,7 +40,7 @@ describe.only('Game', function() {
 
         it('should add cards to the deck', function() { // should add cards to a deck
             game.start();
-            expect(game.currentRound.deck.length).to.equal(30);
+            expect(game.currentRound.deck.currentDeck.length).to.equal(30);
         });
 
         it('should create a new round using deck', function() { // should create a new round with the deck
