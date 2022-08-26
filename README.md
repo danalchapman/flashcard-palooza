@@ -8,7 +8,7 @@ This project utilizes only JavaScript to create a game of flash cards in the CLI
 
 [Notion Workflow Document](https://flower-gravity-d1c.notion.site/Flash-Cards-6b38a17b789c4b6cb94eac886ef0fe73)
 
-<!-- (Insert Gif) -->
+![gif of a playable flashcards game](https://media.giphy.com/media/QEKmBRH3wbn9SY2Ske/giphy.gif)
 
 ## Technologies Used
 
